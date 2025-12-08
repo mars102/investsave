@@ -1,3 +1,6 @@
+// @ts-ignore
+// @ts-ignore
+
 import {Module} from "@nestjs/common";
 import {SequelizeModule} from "@nestjs/sequelize";
 import { UsersModule } from './users/users.module';
@@ -12,7 +15,6 @@ import {Post} from "./posts/posts.model";
 import { FilesModule } from './files/files.module';
 import {ServeStaticModule} from "@nestjs/serve-static";
 import * as path from 'path';
-
 @Module({
     controllers: [],
     providers: [],
@@ -23,15 +25,17 @@ import * as path from 'path';
         ServeStaticModule.forRoot({
             rootPath: path.resolve( __dirname, 'static'),
         }),
+
         SequelizeModule.forRoot({
             dialect: 'postgres',
-            host: process.env.POSTGRES_HOST,
-            port: Number(process.env.POSTGRESS_PORT),
-            username: process.env.POSTGRES_USER,
-            password: process.env.POSTGRESS_PASSWORD,
-            database: process.env.POSTGRES_DB,
+            host: process.env.POSTGRES_HOST || 'localhost',
+            port: Number(process.env.POSTGRES_PORT) || 5432,
+            username: process.env.POSTGRES_USER || 'postgres',
+            password: process.env.POSTGRES_PASSWORD || 'postgres',
+            database: process.env.POSTGRES_DB || 'profidb',
             models: [User, Role, UserRoles, Post],
-            autoLoadModels: true
+            autoLoadModels: true,
+            synchronize: true,
         }),
         UsersModule,
         RolesModule,
