@@ -1,6 +1,13 @@
-## Не забудь звезду
 
-в файле .development.env конфигурация для бд. Добавить свою.
+Установить докер
+ npm install
+ npm run build
+ docker-compose build     
+ docker compose up --build
+
+Приложение поднимается на http://localhost:3000/users вернет нет доступа и можно будет игратся через постман
+
+Следующая задача закинуть приложение на сервер.
 
 #### npm run start:dev - Запуск
 
