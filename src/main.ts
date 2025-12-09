@@ -13,7 +13,7 @@ async function start() {
         .setTitle('Разработка системы Инвестиций')
         .setDescription('Документация REST API')
         .setVersion('1.0.1')
-        .addTag('Система SaveInvest')
+        .addTag('Система InvestHold')
         .build()
     const document = SwaggerModule.createDocument(app, config);
     SwaggerModule.setup('/api/docs', app, document)
