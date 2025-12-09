@@ -21,7 +21,7 @@ services:
   main:
     build: .
     ports:
-      - "3000:3000"
+      - "443:7000"
     depends_on:
       postgres:
         condition: service_healthy  # Ждём, пока PostgreSQL будет готов
