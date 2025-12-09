@@ -25,10 +25,8 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    environment:
-      - NODE_ENV=${NODE_ENV}
     env_file:
-      - .development.env
+      - .env   # ✅ Используем тот же файл
     volumes:
       - .:/app
       - /app/node_modules
