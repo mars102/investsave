@@ -1,20 +1,27 @@
+Readme
 
-Установить докер
- 
-	npm install 
-	
- npm run build 
+Установить докер далее последовательно выполнить комманды:
 	
  docker-compose build 
 	
  docker compose up --build 
 
-Приложение поднимается на http://localhost:3000/users вернет нет доступа и можно будет игратся через постман
+Приложение поднимается на localhost:8080/api/docs/ вернет свагер с описанием апи
 
-Следующая задача закинуть приложение на сервер.
+Также нужно добавить файл с содержимым .env
+# Порты
+APP_PORT=80
+APP_INTERNAL_PORT=7000
+POSTGRES_PORT=5432
 
-#### npm run start:dev - Запуск
+# База данных
+POSTGRES_DB=dbname
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=Password2025!!!
 
-##
+# Окружение
+NODE_ENV=development
 
-#### docker-compose up 
+PORT=7000
+POSTGRES_HOST=postgres
+
