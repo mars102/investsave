@@ -11,17 +11,21 @@
 Также нужно добавить файл с содержимым .env
 
 APP_PORT=80
+
 APP_INTERNAL_PORT=7000
+
 POSTGRES_PORT=5432
 
 
 POSTGRES_DB=dbname
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=Password2025!!!
 
+POSTGRES_USER=postgres
+
+POSTGRES_PASSWORD=Password2025!!!
 
 NODE_ENV=development
 
 PORT=7000
+
 POSTGRES_HOST=postgres
 
