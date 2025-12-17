@@ -2,6 +2,7 @@
 // @ts-ignore
 import { config } from 'dotenv';
 config();
+import { DatabaseInitService } from './database/database-init.service';
 import {Module} from "@nestjs/common";
 import {SequelizeModule} from "@nestjs/sequelize";
 import { UsersModule } from './users/users.module';
@@ -19,7 +20,7 @@ import * as path from 'path';
 
 @Module({
     controllers: [],
-    providers: [],
+    providers: [DatabaseInitService],
     imports: [
         ConfigModule.forRoot({
             envFilePath: '.env',  // ✅ Один файл

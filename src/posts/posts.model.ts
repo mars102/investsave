@@ -1,35 +1,38 @@
-import {BelongsTo, BelongsToMany, Column, DataType, ForeignKey, Model, Table} from "sequelize-typescript";
-import {ApiProperty} from "@nestjs/swagger";
-import {Role} from "../roles/roles.model";
-import {UserRoles} from "../roles/user-roles.model";
-import {User} from "../users/users.model";
+import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
+import { ApiProperty } from "@nestjs/swagger";
+import { User } from "../users/users.model";
 
 interface PostCreationAttrs {
     title: string;
     content: string;
     userId: number;
-    image: string;
+    image?: string; // Делаем необязательным, если может быть null
 }
 
-@Table({tableName: 'posts'})
+@Table({ tableName: 'posts' })
 export class Post extends Model<Post, PostCreationAttrs> {
-    @Column({type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true})
+    @ApiProperty({ example: 1, description: 'Уникальный идентификатор' })
+    @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true })
     id: number;
 
-    @Column({type: DataType.STRING, unique: true, allowNull: false})
+    @ApiProperty({ example: 'Мой первый пост', description: 'Заголовок поста' })
+    @Column({ type: DataType.STRING, unique: true, allowNull: false })
     title: string;
 
-    @Column({type: DataType.STRING, allowNull: false})
+    @ApiProperty({ example: 'Содержимое моего первого поста', description: 'Текст поста' })
+    @Column({ type: DataType.STRING, allowNull: false })
     content: string;
 
-    @Column({type: DataType.STRING})
+    @ApiProperty({ example: 'image.jpg', description: 'Изображение поста', required: false })
+    @Column({ type: DataType.STRING, allowNull: true }) // Явно указываем allowNull: true
     image: string;
 
+    @ApiProperty({ example: 1, description: 'ID автора поста' })
     @ForeignKey(() => User)
-    @Column({type: DataType.INTEGER})
+    @Column({ type: DataType.INTEGER, allowNull: false }) // Добавляем allowNull: false
     userId: number;
 
+    @ApiProperty({ type: () => User, description: 'Автор поста' })
     @BelongsTo(() => User)
-    author: User
-
+    author: User;
 }
